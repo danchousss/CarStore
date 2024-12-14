@@ -53,7 +53,7 @@ public class HelloController {
         } else if ("admin".equals(userType)) {
             try {
                 // Загружаем файл .fxml
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("admin-view.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("Admin-view.fxml"));
                 Parent root = loader.load();
 
                 // Создаём новое окно (Stage)

@@ -45,16 +45,16 @@
                                     <content>
                                         <AnchorPane fx:id="scrollAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="331.0" prefWidth="468.0">
                                  <children>
-                                    <TableView fx:id="carTable" prefHeight="317.0" prefWidth="457.0">
-                                      <columns>
-                                        <TableColumn fx:id="carId" prefWidth="75.0" text="Car_ID" />
-                                        <TableColumn fx:id="carYear" prefWidth="75.0" text="year" />
-                                          <TableColumn fx:id="carModel" prefWidth="75.0" text="model" />
-                                          <TableColumn fx:id="carCompanieId" prefWidth="91.99998474121094" text="companie_ID" />
-                                          <TableColumn fx:id="carCompanie" prefWidth="73.33331298828125" text="companie" />
-                                          <TableColumn fx:id="carPrice" prefWidth="60.66668701171875" text="price" />
-                                      </columns>
-                                    </TableView>
+                                     <TableView fx:id="carTable" prefHeight="317.0" prefWidth="457.0">
+                                         <columns>
+                                             <TableColumn fx:id="carId" prefWidth="75.0" text="Car_ID" />
+                                             <TableColumn fx:id="carYear" prefWidth="75.0" text="Year" />
+                                             <TableColumn fx:id="carModel" prefWidth="75.0" text="Model" />
+                                             <TableColumn fx:id="carCompanieId" prefWidth="92.0" text="Company_ID" />
+                                             <TableColumn fx:id="carCompanieName" prefWidth="150.0" text="Company Name" />
+                                             <TableColumn fx:id="carPrice" prefWidth="60.67" text="Price" />
+                                         </columns>
+                                     </TableView>
                                  </children></AnchorPane>
                                     </content>
                                 </ScrollPane>
@@ -66,7 +66,7 @@
                     <content>
                         <Pane fx:id="customerMainPane" prefHeight="200.0" prefWidth="200.0">
                             <children>
-                                <Pane fx:id="customerMainPane" layoutY="24.0" prefHeight="347.0" prefWidth="118.0">
+                                <Pane fx:id="customer2MainPane" layoutY="24.0" prefHeight="347.0" prefWidth="118.0">
                                     <children>
                                         <Button fx:id="removeMachinButton1" layoutX="11.0" layoutY="59.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" text="remove" />
                                         <Button fx:id="addMachinButton1" cache="true" layoutX="11.0" layoutY="95.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" text="add" />
