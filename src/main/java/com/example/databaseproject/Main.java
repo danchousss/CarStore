@@ -14,7 +14,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) {
         try {
             // Загружаем FXML файл
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("user-view.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Hello-view.fxml"));
             Parent root = fxmlLoader.load();
 
             // Устанавливаем сцену с загруженным интерфейсом
