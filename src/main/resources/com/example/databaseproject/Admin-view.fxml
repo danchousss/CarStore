@@ -15,44 +15,44 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.databaseproject.Controller.AdminController">
     <children>
-        <TabPane prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
+        <TabPane fx:id="mainTabPane" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
             <tabs>
-                <Tab text="Cars">
+                <Tab fx:id="carTab" text="Cars">
                     <content>
-                        <Pane prefHeight="200.0" prefWidth="200.0">
+                        <Pane fx:id="carMainPane" prefHeight="200.0" prefWidth="200.0">
                             <children>
-                                <Pane layoutY="24.0" prefHeight="347.0" prefWidth="118.0">
+                                <Pane fx:id="sidePane" layoutY="24.0" prefHeight="347.0" prefWidth="118.0">
                                     <children>
-                                        <Button fx:id="ediMachinButton" layoutX="11.0" layoutY="24.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" text="Edit" />
+                                        <Button fx:id="editMachinButton" layoutX="11.0" layoutY="24.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" text="Edit" />
                                         <Button fx:id="removeMachinButton" layoutX="11.0" layoutY="59.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" text="remove" />
                                         <Button fx:id="addMachinButton" cache="true" layoutX="11.0" layoutY="95.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" text="add" />
                                     </children>
                                 </Pane>
-                                <Pane layoutX="-4.0" prefHeight="25.0" prefWidth="607.0" style="-fx-background-color: GREY;">
+                                <Pane fx:id="topPane" layoutX="-4.0" prefHeight="25.0" prefWidth="607.0" style="-fx-background-color: GREY;">
                                     <children>
-                                        <TextField layoutX="327.0" prefHeight="25.0" prefWidth="197.0" />
-                                        <Button layoutX="532.0" mnemonicParsing="false" text="ok" />
-                                        <MenuButton layoutX="166.0" mnemonicParsing="false" text="Filter by">
+                                        <TextField fx:id="searchCarField" layoutX="327.0" prefHeight="25.0" prefWidth="197.0" />
+                                        <Button fx:id="searchCarButton" layoutX="532.0" mnemonicParsing="false" text="ok" />
+                                        <MenuButton fx:id="filter" layoutX="166.0" mnemonicParsing="false" text="Filter by">
                                             <items>
-                                                <MenuItem mnemonicParsing="false" text="Price" />
-                                                <MenuItem mnemonicParsing="false" text="Year" />
+                                                <MenuItem fx:id="priceItem" mnemonicParsing="false" text="Price" />
+                                                <MenuItem fx:id="yearItem" mnemonicParsing="false" text="Year" />
                                             </items>
                                         </MenuButton>
-                                        <Label layoutX="278.0" layoutY="4.0" prefHeight="17.0" prefWidth="49.0" text="Search:" />
+                                        <Label fx:id="searchCarLabel" layoutX="278.0" layoutY="4.0" prefHeight="17.0" prefWidth="49.0" text="Search:" />
                                     </children>
                                 </Pane>
-                                <ScrollPane layoutX="119.0" layoutY="30.0" prefHeight="343.0" prefWidth="483.0">
+                                <ScrollPane fx:id="mainScrollPane" layoutX="119.0" layoutY="30.0" prefHeight="343.0" prefWidth="483.0">
                                     <content>
-                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="331.0" prefWidth="468.0">
+                                        <AnchorPane fx:id="scrollAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="331.0" prefWidth="468.0">
                                  <children>
-                                    <TableView prefHeight="317.0" prefWidth="457.0">
+                                    <TableView fx:id="carTable" prefHeight="317.0" prefWidth="457.0">
                                       <columns>
-                                        <TableColumn prefWidth="75.0" text="Car_ID" />
-                                        <TableColumn prefWidth="75.0" text="year" />
-                                          <TableColumn prefWidth="75.0" text="model" />
-                                          <TableColumn prefWidth="91.99998474121094" text="companie_ID" />
-                                          <TableColumn prefWidth="73.33331298828125" text="companie" />
-                                          <TableColumn prefWidth="60.66668701171875" text="price" />
+                                        <TableColumn fx:id="carId" prefWidth="75.0" text="Car_ID" />
+                                        <TableColumn fx:id="carYear" prefWidth="75.0" text="year" />
+                                          <TableColumn fx:id="carModel" prefWidth="75.0" text="model" />
+                                          <TableColumn fx:id="carCompanieId" prefWidth="91.99998474121094" text="companie_ID" />
+                                          <TableColumn fx:id="carCompanie" prefWidth="73.33331298828125" text="companie" />
+                                          <TableColumn fx:id="carPrice" prefWidth="60.66668701171875" text="price" />
                                       </columns>
                                     </TableView>
                                  </children></AnchorPane>
@@ -62,11 +62,11 @@
                         </Pane>
                     </content>
                 </Tab>
-                <Tab text="Customers">
+                <Tab fx:id="customerTab" text="Customers">
                     <content>
-                        <Pane prefHeight="200.0" prefWidth="200.0">
+                        <Pane fx:id="customerMainPane" prefHeight="200.0" prefWidth="200.0">
                             <children>
-                                <Pane layoutY="24.0" prefHeight="347.0" prefWidth="118.0">
+                                <Pane fx:id="customerMainPane" layoutY="24.0" prefHeight="347.0" prefWidth="118.0">
                                     <children>
                                         <Button fx:id="removeMachinButton1" layoutX="11.0" layoutY="59.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" text="remove" />
                                         <Button fx:id="addMachinButton1" cache="true" layoutX="11.0" layoutY="95.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" text="add" />
@@ -84,13 +84,13 @@
                                     <content>
                                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="331.0" prefWidth="469.0">
                                  <children>
-                                    <TableView prefHeight="318.0" prefWidth="457.0">
+                                    <TableView fx:id="customerTable" prefHeight="318.0" prefWidth="457.0">
                                       <columns>
-                                        <TableColumn prefWidth="52.000001311302185" text="ID" />
-                                        <TableColumn prefWidth="107.33337783813477" text="Name" />
-                                          <TableColumn prefWidth="100.66661071777344" text="Login" />
-                                          <TableColumn prefWidth="89.33331298828125" text="Password" />
-                                          <TableColumn prefWidth="107.33331298828125" text="Number" />
+                                        <TableColumn fx:id="customerId" prefWidth="52.000001311302185" text="ID" />
+                                        <TableColumn fx:id="customerName" prefWidth="107.33337783813477" text="Name" />
+                                          <TableColumn fx:id="customerLogin" prefWidth="100.66661071777344" text="Login" />
+                                          <TableColumn fx:id="customerPassword" prefWidth="89.33331298828125" text="Password" />
+                                          <TableColumn fx:id="customerNumber" prefWidth="107.33331298828125" text="Number" />
                                       </columns>
                                     </TableView>
                                  </children></AnchorPane>
@@ -100,7 +100,7 @@
                         </Pane>
                     </content>
                 </Tab>
-                <Tab text="History">
+                <Tab fx:id="historyTab" text="History">
                     <content>
                         <ScrollPane prefHeight="306.0" prefWidth="462.0">
                             <content>
@@ -121,7 +121,7 @@
                         </ScrollPane>
                     </content>
                 </Tab>
-                <Tab text="Profile">
+                <Tab fx:id="profileTab" text="Profile">
                     <content>
                         <Pane prefHeight="200.0" prefWidth="200.0">
                             <children>
