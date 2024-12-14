@@ -14,9 +14,6 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.Pane?>
 
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
 <AnchorPane prefHeight="374.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.databaseproject.Controller.UserController">
    <children>
       <TabPane prefHeight="374.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
@@ -42,7 +39,7 @@
                            <content>
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="288.0" prefWidth="579.0">
                                  <children>
-                                    <TableView prefHeight="292.0" prefWidth="570.0">
+                                    <TableView prefHeight="277.0" prefWidth="565.0">
                                       <columns>
                                         <TableColumn prefWidth="75.0" text="car_id" />
                                         <TableColumn prefWidth="75.0" text="year" />
@@ -98,11 +95,11 @@
                            <children>
                               <Label layoutX="24.0" layoutY="32.0" prefHeight="22.0" prefWidth="63.0" text="name:" />
                               <Label layoutX="117.0" layoutY="32.0" prefHeight="22.0" prefWidth="63.0" text="Label" />
-                              <Label layoutX="24.0" layoutY="69.0" prefHeight="22.0" prefWidth="63.0" text="ID" />
+                              <Label layoutX="24.0" layoutY="69.0" prefHeight="22.0" prefWidth="63.0" text="ID:" />
                               <Label layoutX="117.0" layoutY="69.0" prefHeight="22.0" prefWidth="63.0" text="Label" />
-                              <Label layoutX="24.0" layoutY="111.0" prefHeight="22.0" prefWidth="63.0" text="login" />
+                              <Label layoutX="24.0" layoutY="111.0" prefHeight="22.0" prefWidth="63.0" text="login:" />
                               <Label layoutX="117.0" layoutY="111.0" prefHeight="22.0" prefWidth="63.0" text="Label" />
-                              <Label layoutX="24.0" layoutY="145.0" prefHeight="22.0" prefWidth="63.0" text="password" />
+                              <Label layoutX="24.0" layoutY="145.0" prefHeight="22.0" prefWidth="63.0" text="password:" />
                               <Label layoutX="117.0" layoutY="145.0" prefHeight="22.0" prefWidth="63.0" text="Label" />
                            </children>
                         </Pane>

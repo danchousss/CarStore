@@ -43,7 +43,19 @@
                                 </Pane>
                                 <ScrollPane layoutX="119.0" layoutY="30.0" prefHeight="343.0" prefWidth="483.0">
                                     <content>
-                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="331.0" prefWidth="468.0">
+                                 <children>
+                                    <TableView prefHeight="317.0" prefWidth="457.0">
+                                      <columns>
+                                        <TableColumn prefWidth="75.0" text="Car_ID" />
+                                        <TableColumn prefWidth="75.0" text="year" />
+                                          <TableColumn prefWidth="75.0" text="model" />
+                                          <TableColumn prefWidth="91.99998474121094" text="companie_ID" />
+                                          <TableColumn prefWidth="73.33331298828125" text="companie" />
+                                          <TableColumn prefWidth="60.66668701171875" text="price" />
+                                      </columns>
+                                    </TableView>
+                                 </children></AnchorPane>
                                     </content>
                                 </ScrollPane>
                             </children>
@@ -70,7 +82,18 @@
                                 </Pane>
                                 <ScrollPane layoutX="119.0" layoutY="30.0" prefHeight="343.0" prefWidth="483.0">
                                     <content>
-                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="331.0" prefWidth="469.0">
+                                 <children>
+                                    <TableView prefHeight="318.0" prefWidth="457.0">
+                                      <columns>
+                                        <TableColumn prefWidth="52.000001311302185" text="ID" />
+                                        <TableColumn prefWidth="107.33337783813477" text="Name" />
+                                          <TableColumn prefWidth="100.66661071777344" text="Login" />
+                                          <TableColumn prefWidth="89.33331298828125" text="Password" />
+                                          <TableColumn prefWidth="107.33331298828125" text="Number" />
+                                      </columns>
+                                    </TableView>
+                                 </children></AnchorPane>
                                     </content>
                                 </ScrollPane>
                             </children>
@@ -105,8 +128,17 @@
                                 <Pane layoutY="-1.0" prefHeight="30.0" prefWidth="600.0" style="-fx-background-color: grey;">
                                     <children>
                                         <Button layoutX="534.0" layoutY="2.0" mnemonicParsing="false" text="Log out" />
+                              <Button layoutX="35.0" layoutY="3.0" mnemonicParsing="false" text="Edit profile" />
                                     </children>
                                 </Pane>
+                        <Label layoutX="25.0" layoutY="61.0" prefHeight="28.0" prefWidth="82.0" text="Nmae:" />
+                        <Label layoutX="164.0" layoutY="61.0" prefHeight="28.0" prefWidth="82.0" text="Label" />
+                        <Label layoutX="25.0" layoutY="89.0" prefHeight="28.0" prefWidth="82.0" text="ID:" />
+                        <Label layoutX="164.0" layoutY="89.0" prefHeight="28.0" prefWidth="82.0" text="Label" />
+                        <Label layoutX="25.0" layoutY="117.0" prefHeight="28.0" prefWidth="82.0" text="Login:" />
+                        <Label layoutX="164.0" layoutY="117.0" prefHeight="28.0" prefWidth="82.0" text="Label" />
+                        <Label layoutX="25.0" layoutY="145.0" prefHeight="28.0" prefWidth="82.0" text="Password:" />
+                        <Label layoutX="164.0" layoutY="145.0" prefHeight="28.0" prefWidth="82.0" text="Label" />
                             </children>
                         </Pane>
                     </content>
