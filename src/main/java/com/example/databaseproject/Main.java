@@ -14,13 +14,16 @@ public class Main extends Application {
     public void start(Stage primaryStage) {
         try {
             // Загружаем FXML файл
+
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Hello-view.fxml"));
+
+
             Parent root = fxmlLoader.load();
 
             // Устанавливаем сцену с загруженным интерфейсом
             Scene scene = new Scene(root);
             primaryStage.setScene(scene);
-            primaryStage.setTitle("User View");
+            primaryStage.setTitle("Admin View");
 
             // Показываем главное окно
             primaryStage.show();

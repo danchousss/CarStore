@@ -2,8 +2,10 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -11,37 +13,48 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox alignment="CENTER" prefHeight="408.0" prefWidth="707.0" spacing="20.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1" fx:controller="com.example.databaseproject.HelloController">
+<VBox alignment="CENTER" prefHeight="462.0" prefWidth="839.0" spacing="20.0" style="-fx-background-color: #5d5c58;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.databaseproject.HelloController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
+   <ButtonBar prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #5d5c58;" />
    <ButtonBar prefHeight="40.0" prefWidth="200.0" />
-   <ButtonBar prefHeight="40.0" prefWidth="200.0">
-      <buttons>
-         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Auto Center" wrappingWidth="625.0297553539276">
-            <font>
-               <Font name="Broadway" size="38.0" />
-            </font>
-         </Text>
-      </buttons>
-   </ButtonBar>
+   <Text fill="#843939" strokeType="OUTSIDE" strokeWidth="0.0" text="lkjglgl" />
    <Accordion />
+   <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Auto Center" wrappingWidth="625.0297553539276">
+      <font>
+         <Font name="Broadway" size="64.0" />
+      </font>
+   </Text>
+   <Text fill="#fffefe" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome" wrappingWidth="193.33663930892908">
+      <font>
+         <Font name="Broadway" size="20.0" />
+      </font>
+   </Text>
    <AnchorPane prefHeight="200.0" prefWidth="200.0">
       <children>
-         <Text layoutX="50.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome" wrappingWidth="165.33663930892908">
-            <font>
-               <Font name="Broadway" size="20.0" />
-            </font>
-         </Text>
       
-          <Label fx:id="welcomeText" layoutX="318.0" layoutY="5.0" prefHeight="23.0" prefWidth="166.0" text="login" />
-         <Label fx:id="welcomeText1" layoutX="293.0" layoutY="25.0" prefHeight="23.0" prefWidth="166.0" text="password" />
-         <Text layoutX="368.0" layoutY="6.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Please write your login and password " wrappingWidth="234.4000244140625" />
-         <ImageView fitHeight="172.0" fitWidth="166.0" layoutX="25.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
+          <Label fx:id="welcomeText" layoutX="400.0" layoutY="38.0" prefHeight="23.0" prefWidth="166.0" text="login" textFill="WHITE">
+            <font>
+               <Font size="16.0" />
+            </font></Label>
+         <Label fx:id="welcomeText1" layoutX="367.0" layoutY="85.0" prefHeight="23.0" prefWidth="166.0" text="password" textFill="WHITE">
+            <font>
+               <Font size="16.0" />
+            </font></Label>
+         <ImageView fitHeight="272.0" fitWidth="394.0" layoutY="-93.0" pickOnBounds="true" preserveRatio="true">
             <image>
-               <Image url="@resources/autosalon-2.png" />
+               <Image url="@resources/Lamborghini_Evo_Huracan_Orange_Side_Gray_566174_1280x853.png" />
             </image>
          </ImageView>
+         <Text fill="WHITE" layoutX="426.0" layoutY="9.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Please write your login and password " wrappingWidth="234.4000244140625">
+            <font>
+               <Font name="System Italic" size="17.0" />
+            </font>
+         </Text>
+         <TextField fx:id="loginField" layoutX="459.0" layoutY="38.0" />
+         <TextField fx:id="passwordField" layoutX="457.0" layoutY="85.0" />
+         <Button fx:id="loginButton" layoutX="491.0" layoutY="131.0" onAction="#handleLoginButton" mnemonicParsing="false" text="login" />
       </children>
    </AnchorPane>
    <Text strokeType="OUTSIDE" strokeWidth="0.0" />
