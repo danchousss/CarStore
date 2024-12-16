@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="433.0" prefWidth="325.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane  xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.databaseproject.Controller.AdminController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="358.0">
    <children>
       <Pane fx:id="mainPane" layoutY="2.0" prefHeight="429.0" prefWidth="325.0">
          <children>
@@ -26,7 +26,7 @@
             <TextField fx:id="modelField" layoutX="14.0" layoutY="192.0" />
             <TextField fx:id="companyIdField" layoutX="14.0" layoutY="243.0" />
             <TextField fx:id="companyNameField" layoutX="14.0" layoutY="297.0" />
-            <Button fx:id="registerButton" layoutX="102.0" layoutY="386.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="123.0" text="Register">
+            <Button fx:id="registerButton" layoutX="189.0" layoutY="340.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="123.0" text="Register">
                <font>
                   <Font name="Arial" size="18.0" />
                </font>

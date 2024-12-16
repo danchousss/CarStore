@@ -15,10 +15,9 @@ public class Main extends Application {
         try {
             // Загружаем FXML файл
 
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Hello-view.fxml"));
-
-
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/databaseproject/hello-view.fxml"));
             Parent root = fxmlLoader.load();
+
 
             // Устанавливаем сцену с загруженным интерфейсом
             Scene scene = new Scene(root);
