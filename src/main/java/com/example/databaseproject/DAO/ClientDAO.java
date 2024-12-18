@@ -42,39 +42,8 @@ public class ClientDAO {
         }
 
         // Метод для получения всех деталей заказов
-        public static List<OrderDetail> getAllOrderDetails() throws SQLException {
-            List<OrderDetail> orderDetails = new ArrayList<>();
 
-            // Получаем соединение через класс JDBC
-            try (Connection connection = JDBC.getConnection()) {
-                // SQL-запрос для получения данных из таблицы order_details
-                String query = """
-                SELECT order_id, order_details_id, car_id, quantity
-                FROM order_details;
-            """;
 
-                // Выполняем запрос
-                try (Statement stmt = connection.createStatement();
-                     ResultSet rs = stmt.executeQuery(query)) {
-
-                    // Перебираем все строки результата
-                    while (rs.next()) {
-                        int orderId = rs.getInt("order_id");
-                        int orderDetailsId = rs.getInt("order_details_id");
-                        int carId = rs.getInt("car_id");
-                        int quantity = rs.getInt("quantity");
-
-                        // Создаем объект OrderDetail и добавляем в список
-                        orderDetails.add(new OrderDetail(orderId, orderDetailsId, carId, quantity));
-                    }
-                }
-            } catch (SQLException e) {
-                // Подробное сообщение об ошибке
-                throw new SQLException("Error while retrieving data from order_details table: " + e.getMessage(), e);
-            }
-
-            return orderDetails;
-        }
     public static Customer getCustomerByLoginAndPassword(String login, String password) throws SQLException {
         Customer customer = null;
 
@@ -114,6 +83,156 @@ public class ClientDAO {
 
         return customer; // Вернем null, если пользователь не найден
     }
+    public static List<OrderDetail> getAllOrderDetails() throws SQLException {
+        List<OrderDetail> orderDetailsList = new ArrayList<>();
+        String sql = "SELECT order_id, order_details_id, car_id, quantity, customer_id FROM order_details";
+
+        try (Connection connection = JDBC.getConnection();
+             Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery(sql)) {
+
+            while (resultSet.next()) {
+                int orderId = resultSet.getInt("order_id");
+                int orderDetailsId = resultSet.getInt("order_details_id");
+                int carId = resultSet.getInt("car_id");
+                int quantity = resultSet.getInt("quantity");
+                int customerId = resultSet.getInt("customer_id"); // Получаем customer_id
+
+                // Добавляем запись в список
+                orderDetailsList.add(new OrderDetail(orderId, orderDetailsId, carId, quantity, customerId));
+            }
+        }
+        return orderDetailsList;
+    }
+    public int getCustomerIdByLoginAndPassword(String login, String password) throws SQLException {
+        String sql = "SELECT customer_id FROM customers WHERE login = ? AND password = ?";
+        try (Connection connection = JDBC.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, login);
+            statement.setString(2, password);
+            ResultSet rs = statement.executeQuery();
+            if (rs.next()) {
+                return rs.getInt("customer_id");
+            }
+        }
+        return -1; // Если не найдено
+    }
+    public double getCarPriceById(int carId) throws SQLException {
+        String sql = "SELECT price FROM cars WHERE car_id = ?";
+        try (Connection connection = JDBC.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, carId);
+            ResultSet rs = statement.executeQuery();
+            if (rs.next()) {
+                return rs.getDouble("price");
+            }
+        }
+        return -1; // Если машина не найдена
+    }
+    public boolean addOrder(int customerId, int carId, double amount) throws SQLException {
+        String sql = "INSERT INTO orders (customer_id, car_id, order_date, amount) VALUES (?, ?, CURRENT_TIMESTAMP, ?)";
+        try (Connection connection = JDBC.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, customerId);
+            statement.setInt(2, carId);
+            statement.setDouble(3, amount);
+            return statement.executeUpdate() > 0;
+        }
+    }
+    public boolean updateOrderDetails(int customerId, int carId) throws SQLException {
+        String checkSql = "SELECT quantity FROM order_details WHERE customer_id = ? AND car_id = ?";
+        String updateSql = "UPDATE order_details SET quantity = quantity + 1 WHERE customer_id = ? AND car_id = ?";
+        String insertSql = "INSERT INTO order_details (order_id, order_details_id, car_id, quantity, customer_id) VALUES (?, ?, ?, ?, ?)";
+
+        try (Connection connection = JDBC.getConnection()) {
+            connection.setAutoCommit(false);
+
+            // Проверяем, есть ли запись
+            try (PreparedStatement checkStmt = connection.prepareStatement(checkSql)) {
+                checkStmt.setInt(1, customerId);
+                checkStmt.setInt(2, carId);
+                ResultSet rs = checkStmt.executeQuery();
+
+                if (rs.next()) {
+                    // Если запись существует — обновляем quantity
+                    try (PreparedStatement updateStmt = connection.prepareStatement(updateSql)) {
+                        updateStmt.setInt(1, customerId);
+                        updateStmt.setInt(2, carId);
+                        updateStmt.executeUpdate();
+                    }
+                } else {
+                    // Если записи нет — добавляем новую
+                    try (PreparedStatement insertStmt = connection.prepareStatement(insertSql)) {
+                        insertStmt.setInt(1, getNextOrderId()); // Генерация order_id
+                        insertStmt.setInt(2, getNextOrderDetailsId());
+                        insertStmt.setInt(3, carId);
+                        insertStmt.setInt(4, 1); // quantity = 1
+                        insertStmt.setInt(5, customerId);
+                        insertStmt.executeUpdate();
+                    }
+                }
+            }
+
+            connection.commit();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    private int getNextOrderId() throws SQLException {
+        String sql = "SELECT MAX(order_id) AS max_id FROM orders";
+        try (Connection connection = JDBC.getConnection();
+             Statement stmt = connection.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+            if (rs.next()) {
+                return rs.getInt("max_id") + 1;
+            }
+        }
+        return 1; // Если таблица пустая
+    }
+
+    private int getNextOrderDetailsId() throws SQLException {
+        String sql = "SELECT MAX(order_details_id) AS max_id FROM order_details";
+        try (Connection connection = JDBC.getConnection();
+             Statement stmt = connection.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+            if (rs.next()) {
+                return rs.getInt("max_id") + 1;
+            }
+        }
+        return 1; // Если таблица пустая
+    }
+    public List<OrderDetail> getOrderDetailsByCustomerId(int customerId) throws SQLException {
+        String sql = "SELECT order_id, order_details_id, car_id, quantity, customer_id " +
+                "FROM order_details WHERE customer_id = ?";
+        List<OrderDetail> orderDetailsList = new ArrayList<>();
+
+        try (Connection connection = JDBC.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, customerId);
+            ResultSet rs = statement.executeQuery();
+
+            while (rs.next()) {
+                OrderDetail orderDetail = new OrderDetail(
+                        rs.getInt("order_id"),
+                        rs.getInt("order_details_id"),
+                        rs.getInt("car_id"),
+                        rs.getInt("quantity"),
+                        rs.getInt("customer_id")
+                );
+                orderDetailsList.add(orderDetail);
+            }
+        }
+        return orderDetailsList;
+    }
+
+
+
+
+
+
+
 
 }
 

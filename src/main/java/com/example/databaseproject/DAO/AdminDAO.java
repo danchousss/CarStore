@@ -207,6 +207,48 @@ public class AdminDAO {
             return false; // Если произошла ошибка
         }
     }
+    public boolean removeCarById(int carId) {
+        String sql = "DELETE FROM cars WHERE car_id = ?";
+
+        try (Connection connection = JDBC.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
+            // Установка параметра car_id
+            preparedStatement.setInt(1, carId);
+
+            // Выполнение запроса
+            int rowsAffected = preparedStatement.executeUpdate();
+
+            // Возвращаем true, если удаление прошло успешно
+            return rowsAffected > 0;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    public boolean removeCustomerById(int customerId) {
+        String sql = "DELETE FROM customers WHERE customer_id = ?";
+
+        try (Connection connection = JDBC.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
+            // Установка параметра customer_id
+            preparedStatement.setInt(1, customerId);
+
+            // Выполнение запроса
+            int rowsAffected = preparedStatement.executeUpdate();
+
+            // Возвращаем true, если удаление прошло успешно
+            return rowsAffected > 0;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+
 
 
 }

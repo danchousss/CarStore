@@ -26,7 +26,7 @@
                             <children>
                                 <Pane fx:id="sidePane" layoutY="24.0" prefHeight="347.0" prefWidth="118.0">
                                     <children>
-                                        <Button fx:id="removeMachineButton" layoutX="9.0" layoutY="161.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" text="Remove by ID" />                              <ImageView fitHeight="61.0" fitWidth="87.0" layoutX="16.0" layoutY="283.0" pickOnBounds="true" preserveRatio="true">
+                                        <Button fx:id="removeMachineButton" layoutX="9.0" layoutY="161.0" mnemonicParsing="false" onAction="#handleRemoveCarButtonClick" prefHeight="25.0" prefWidth="100.0" text="Remove  by ID" />                              <ImageView fitHeight="61.0" fitWidth="87.0" layoutX="16.0" layoutY="283.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@resources/Lamborghini_Evo_Huracan_Orange_Side_Gray_566174_1280x853.png" />
                                  </image>
@@ -59,8 +59,13 @@
                             <children>
                                 <Pane fx:id="customerSidePane" layoutY="24.0" prefHeight="347.0" prefWidth="118.0">
                                     <children>
-                                        <Button fx:id="removeCustomerButton" layoutX="9.0" layoutY="174.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" text="Remove by ID" />
+                                        <Button fx:id="removeCustomerButton" layoutX="9.0" layoutY="174.0" mnemonicParsing="false" onAction="#handleRemoveCustomerButtonClick" prefHeight="25.0" prefWidth="100.0" text="Remove by ID" />
                               <TextField fx:id="searchCustomerField1" layoutX="18.0" layoutY="124.0" prefHeight="26.0" prefWidth="83.0" />
+                              <ImageView fitHeight="101.0" fitWidth="94.0" layoutX="12.0" layoutY="209.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@resources/png-transparent-computer-icons-icon-design-business-administration-admin-icon-hand-monochrome-silhouette-thumbnail-removebg-preview.png" />
+                                 </image>
+                              </ImageView>
                                     </children>
                                 </Pane>
                                 <Pane fx:id="customerTopPane" layoutX="-4.0" prefHeight="25.0" prefWidth="607.0" style="-fx-background-color: GREY;">
@@ -119,7 +124,7 @@
                      <content>
                         <AnchorPane fx:id="historyScrollAnchorPane1" minHeight="0.0" minWidth="0.0" prefHeight="356.0" prefWidth="586.0" style="-fx-background-color: #5d5c58;">
                            <children>
-                              <Button fx:id="logoutButton1" layoutX="266.0" layoutY="316.0" onAction="#handleLogoutButton" text="ADD Costumer" />
+                              <Button fx:id="addCostumer" layoutX="266.0" layoutY="316.0" onAction="#handleAddCostumerButtonClick" text="ADD Costumer" />
                               <TextField fx:id="searchCustomerField11" layoutX="51.0" layoutY="33.0" prefHeight="26.0" prefWidth="128.0" />
                               <TextField fx:id="searchCustomerField111" layoutX="400.0" layoutY="33.0" prefHeight="26.0" prefWidth="128.0" />
                               <TextField fx:id="searchCustomerField112" layoutX="51.0" layoutY="124.0" prefHeight="26.0" prefWidth="128.0" />
@@ -130,6 +135,11 @@
                               <Text layoutX="104.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" text="login" />
                               <Text layoutX="424.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="phone_number" />
                               <Text layoutX="424.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="password" wrappingWidth="98.4000244140625" />
+                              <ImageView fitHeight="136.0" fitWidth="149.0" layoutX="219.0" layoutY="69.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@resources/png-clipart-computer-icons-user-user-icon-face-monochrome-removebg-preview.png" />
+                                 </image>
+                              </ImageView>
                            </children>
                         </AnchorPane>
                      </content>
@@ -160,6 +170,11 @@
                               <Text layoutX="418.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="company_id" wrappingWidth="91.20001220703125" />
                               <Text layoutX="418.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" text="companies_name" />
                               <Text layoutX="453.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" text="price" />
+                              <ImageView fitHeight="125.0" fitWidth="161.0" layoutX="221.0" layoutY="75.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@resources/autosalon-2.png" />
+                                 </image>
+                              </ImageView>
                            </children>
                         </AnchorPane>
                      </content>

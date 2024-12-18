@@ -12,10 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
@@ -33,6 +30,7 @@ public class UserController {
         clientDAO = new ClientDAO();
         loadOrderDetailsData();  // Один метод для загрузки данных
         loadCarsData();
+        loadOrderDetailsData();
     }
 
     // Метод для загрузки данных о заказах в TextArea
@@ -44,7 +42,7 @@ public class UserController {
             // Проверяем, что список не пуст
             if (orderDetailsList == null || orderDetailsList.isEmpty()) {
                 orderDetailsView.setText("No data available.");
-                return;  // Выход, если данных нет
+                return; // Выход, если данных нет
             }
 
             // Используем StringBuilder для формирования строки для TextArea
@@ -54,6 +52,7 @@ public class UserController {
                         .append(", Order Details ID: ").append(orderDetail.getOrderDetailsId())
                         .append(", Car ID: ").append(orderDetail.getCarId())
                         .append(", Quantity: ").append(orderDetail.getQuantity())
+                        .append(", Customer ID: ").append(orderDetail.getCustomerId()) // Добавлено поле customer_id
                         .append("\n");
             }
 
@@ -130,10 +129,88 @@ public class UserController {
             e.printStackTrace(); // Выводим ошибку, если что-то пошло не так
         }
     }
+    @FXML
+    private TextField carIdTextField;
+
+    @FXML
+    private Button buyCarButton;
+
+    @FXML
+    private TextField loginField;
+
+    @FXML
+    private TextField passwordField;
+
+    @FXML
+    private void handleBuyCarButtonClick() {
+        try {
+            String login = loginField.getText();
+            String password = passwordField.getText();
+            int carId = Integer.parseInt(carIdTextField.getText());
+
+            System.out.println("Login: " + login + ", Password: " + password);
+            System.out.println("Car ID entered: " + carId);
+
+            if (login.isEmpty() || password.isEmpty() || carIdTextField.getText().isEmpty()) {
+                showAlert(Alert.AlertType.ERROR, "Invalid Input", "Please fill in all fields.");
+                return;
+            }
+
+            int customerId = clientDAO.getCustomerIdByLoginAndPassword(login, password);
+            System.out.println("Customer ID: " + customerId);
+
+            if (customerId == -1) {
+                showAlert(Alert.AlertType.ERROR, "Authentication Failed", "Invalid login or password.");
+                return;
+            }
+
+            double carPrice = clientDAO.getCarPriceById(carId);
+            System.out.println("Car Price: " + carPrice);
+
+            if (carPrice == -1) {
+                showAlert(Alert.AlertType.ERROR, "Car Not Found", "Invalid car ID.");
+                return;
+            }
+
+            boolean orderAdded = clientDAO.addOrder(customerId, carId, carPrice);
+            System.out.println("Order added: " + orderAdded);
+
+            if (!orderAdded) {
+                showAlert(Alert.AlertType.ERROR, "Order Failed", "Could not place the order.");
+                return;
+            }
+
+            boolean orderDetailsUpdated = clientDAO.updateOrderDetails(customerId, carId);
+            System.out.println("Order details updated: " + orderDetailsUpdated);
+
+            if (!orderDetailsUpdated) {
+                showAlert(Alert.AlertType.WARNING, "Order Details Issue", "Order placed, but details could not be updated.");
+            } else {
+                showAlert(Alert.AlertType.INFORMATION, "Success", "Car purchased successfully!");
+            }
+
+        } catch (NumberFormatException e) {
+            showAlert(Alert.AlertType.ERROR, "Invalid Input", "Car ID must be a number.");
+        } catch (SQLException e) {
+            e.printStackTrace();
+            showAlert(Alert.AlertType.ERROR, "Database Error", "An error occurred while accessing the database.");
+        }
+    }
 
 
+    private void showAlert(Alert.AlertType alertType, String invalidInput, String s) {
+    }
+    private UserController userController;
+
+    // Метод для установки UserController
+    public void setUserController(UserController userController) {
+        this.userController = userController;
+    }
 
 
+    public TextField getCarIdTextField() {
+        return carIdTextField;
+    }
 
 
 }

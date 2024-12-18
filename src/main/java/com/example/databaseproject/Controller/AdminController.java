@@ -141,16 +141,6 @@ public class AdminController {
 
 
     @FXML
-    private TextField searchCustomerField11;  // Для customer_id
-    @FXML
-    private TextField searchCustomerField111; // Для name
-    @FXML
-    private TextField searchCustomerField112; // Для login
-    @FXML
-    private TextField searchCustomerField113; // Для phone_number
-    @FXML
-    private TextField searchCustomerField1121; // Для password
-    @FXML
     private Button logoutButton;
     @FXML
     private void handleLogoutButton(ActionEvent event) {
@@ -249,36 +239,6 @@ public class AdminController {
         alert.setContentText(message);
         alert.showAndWait();
     }
-    @FXML
-    private TextField searchCarField1; // Поле для ввода ID машины
-
-    @FXML
-    private void handleDeleteCarButton(ActionEvent event) {
-        try {
-            // Получаем ID из текстового поля
-            String carIdText = searchCarField1.getText();
-            if (carIdText == null || carIdText.trim().isEmpty()) {
-                showAlert("Ошибка", "Поле ID машины пустое.", Alert.AlertType.ERROR);
-                return;
-            }
-
-            int carId = Integer.parseInt(carIdText.trim()); // Преобразуем текст в число
-
-            AdminDAO adminDAO = new AdminDAO();
-            boolean isDeleted = adminDAO.deleteCarById(carId); // Вызываем метод DAO для удаления
-
-            if (isDeleted) {
-                showAlert("Успех", "Машина успешно удалена.", Alert.AlertType.INFORMATION);
-            } else {
-                showAlert("Ошибка", "Машина с указанным ID не найдена.", Alert.AlertType.ERROR);
-            }
-        } catch (NumberFormatException e) {
-            showAlert("Ошибка", "ID машины должно быть числом.", Alert.AlertType.ERROR);
-        } catch (Exception e) {
-            e.printStackTrace();
-            showAlert("Ошибка", "Произошла ошибка при удалении машины.", Alert.AlertType.ERROR);
-        }
-    }
 
     private void showAlert(String title, String content, Alert.AlertType alertType) {
         Alert alert = new Alert(alertType);
@@ -287,7 +247,99 @@ public class AdminController {
         alert.setContentText(content);
         alert.showAndWait();
     }
+    @FXML
+    private TextField searchCustomerField11; // Поле для customer_id
+    @FXML
+    private TextField searchCustomerField111; // Поле для name
+    @FXML
+    private TextField searchCustomerField112; // Поле для login
+    @FXML
+    private TextField searchCustomerField113; // Поле для phone_number
+    @FXML
+    private TextField searchCustomerField1121; // Поле для password
 
+    @FXML
+    private void handleAddCostumerButtonClick() {
+        try {
+            // Получение данных из полей ввода
+            int customerId = Integer.parseInt(searchCustomerField11.getText());
+            String name = searchCustomerField111.getText();
+            String login = searchCustomerField112.getText();
+            String phoneNumber = searchCustomerField113.getText();
+            String password = searchCustomerField1121.getText();
+
+            // Создание объекта Customer
+            Customer customer = new Customer(customerId, name, login, phoneNumber, password);
+
+            // Вызов DAO для добавления клиента
+            boolean success = adminDAO.addCustomer(customer);
+
+            // Уведомление пользователя об успехе или ошибке
+            if (success) {
+                showAlert(Alert.AlertType.INFORMATION, "Success", "Customer added successfully!");
+                clearCustomerFields(); // Очистка полей после успешного добавления
+            } else {
+                showAlert(Alert.AlertType.ERROR, "Error", "Failed to add customer.");
+            }
+        } catch (NumberFormatException e) {
+            showAlert(Alert.AlertType.ERROR, "Invalid Input", "Please check your input data.");
+        }
+    }
+
+    // Метод для очистки текстовых полей клиента
+    private void clearCustomerFields() {
+        searchCustomerField11.clear();
+        searchCustomerField111.clear();
+        searchCustomerField112.clear();
+        searchCustomerField113.clear();
+        searchCustomerField1121.clear();
+    }
+    @FXML
+    private TextField searchCarField1;
+
+    @FXML
+    private void handleRemoveCarButtonClick() {
+        try {
+            // Получение car_id из текстового поля
+            int carId = Integer.parseInt(searchCarField1.getText());
+
+            // Вызов DAO для удаления машины
+            boolean success = adminDAO.removeCarById(carId);
+
+            // Уведомление пользователя об успехе или ошибке
+            if (success) {
+                showAlert(Alert.AlertType.INFORMATION, "Success", "Car with ID " + carId + " has been removed.");
+                searchCarField1.clear(); // Очистка текстового поля после успешного удаления
+            } else {
+                showAlert(Alert.AlertType.ERROR, "Error", "No car found with ID " + carId + ".");
+            }
+        } catch (NumberFormatException e) {
+            showAlert(Alert.AlertType.ERROR, "Invalid Input", "Please enter a valid Car ID.");
+        }
+    }
+    @FXML
+    private TextField searchCustomerField1; // Поле для ввода customer_id
+
+    @FXML
+    private void handleRemoveCustomerButtonClick() {
+        try {
+            // Получение customer_id из текстового поля
+            int customerId = Integer.parseInt(searchCustomerField1.getText());
+
+            // Вызов DAO для удаления клиента
+            boolean success = adminDAO.removeCustomerById(customerId);
+
+            // Уведомление пользователя об успехе или ошибке
+            if (success) {
+                showAlert(Alert.AlertType.INFORMATION, "Success", "Customer with ID " + customerId + " has been removed.");
+                searchCustomerField1.clear(); // Очистка текстового поля после успешного удаления
+            } else {
+                showAlert(Alert.AlertType.ERROR, "Error", "No customer found with ID " + customerId + ".");
+            }
+        } catch (NumberFormatException e) {
+            showAlert(Alert.AlertType.ERROR, "Invalid Input", "Please enter a valid Customer ID.");
+        }
+    }
 
 
 

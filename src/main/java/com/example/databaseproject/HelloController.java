@@ -118,4 +118,9 @@ public class HelloController {
         alert.setHeaderText(null);
         alert.showAndWait();
     }
+    private static UserController userController; // Ссылка на UserController
+
+    public static void setUserController(UserController controller) {
+        userController = controller; // Устанавливаем ссылку на UserController
+    }
 }
