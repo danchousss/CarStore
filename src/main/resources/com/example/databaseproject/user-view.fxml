@@ -23,7 +23,7 @@
                      <children>
                         <Pane fx:id="headerPane" prefHeight="40.0" prefWidth="600.0">
                            <children>
-                              <Button fx:id="buyCarButton" layoutX="468.0" layoutY="8.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="97.0" text="Buy car" onAction="#handleBuyCarButtonClick"/>
+                              <Button fx:id="buyCarButton" onAction="#handleBuyCarButtonClick" layoutX="468.0" layoutY="8.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="97.0" text="Buy car" />
                               <Label fx:id="instructionLabel" layoutX="213.0" layoutY="12.0" prefHeight="17.0" prefWidth="174.0" text="After choice put ID of car here:" />
                               <TextField fx:id="carIdTextField" layoutX="389.0" layoutY="8.0" prefHeight="25.0" prefWidth="67.0" />
                               <ImageView fitHeight="32.0" fitWidth="35.0" layoutX="119.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">

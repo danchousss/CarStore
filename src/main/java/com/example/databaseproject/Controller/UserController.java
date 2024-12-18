@@ -5,6 +5,7 @@ import com.example.databaseproject.DAO.ClientDAO;
 import com.example.databaseproject.Model.Car;
 import com.example.databaseproject.Model.Customer;
 import com.example.databaseproject.Model.OrderDetail;
+import com.example.databaseproject.UserSession;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -136,27 +137,24 @@ public class UserController {
     private Button buyCarButton;
 
     @FXML
-    private TextField loginField;
-
-    @FXML
     private TextField passwordField;
-
+    @FXML
+    private TextField loginField;
     @FXML
     private void handleBuyCarButtonClick() {
         try {
-            String login = loginField.getText();
-            String password = passwordField.getText();
             int carId = Integer.parseInt(carIdTextField.getText());
 
-            System.out.println("Login: " + login + ", Password: " + password);
-            System.out.println("Car ID entered: " + carId);
+//            System.out.println("Login: " + login + ", Password: " + password);
+//            System.out.println("Car ID entered: " + carId);
+//
+//            if (login.isEmpty() || password.isEmpty() || carIdTextField.getText().isEmpty()) {
+//                showAlert(Alert.AlertType.ERROR, "Invalid Input", "Please fill in all fields.");
+//                return;
+//            }
 
-            if (login.isEmpty() || password.isEmpty() || carIdTextField.getText().isEmpty()) {
-                showAlert(Alert.AlertType.ERROR, "Invalid Input", "Please fill in all fields.");
-                return;
-            }
-
-            int customerId = clientDAO.getCustomerIdByLoginAndPassword(login, password);
+//            int customerId = clientDAO.getCustomerIdByLoginAndPassword(login, password);
+            int customerId = UserSession.getUser().getUserId();
             System.out.println("Customer ID: " + customerId);
 
             if (customerId == -1) {

@@ -2,6 +2,7 @@ package com.example.databaseproject;
 
 import com.example.databaseproject.Controller.UserController;
 import com.example.databaseproject.DAO.ClientDAO;
+import com.example.databaseproject.Model.User;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.event.ActionEvent;
@@ -61,22 +62,25 @@ public class HelloController {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("user-view.fxml"));
                     Parent root = loader.load();
 
-                    // Создаём новое окно (Stage)
+                    // Создаем новое окно (Stage)
                     Stage stage = new Stage();
                     stage.setTitle("Профиль пользователя");
 
                     // Устанавливаем сцену (Scene) с загруженным интерфейсом
                     stage.setScene(new Scene(root));
 
-                    // Получаем контроллер для загрузки данных в TextArea
+                    // Получаем контроллер UserController
                     UserController userController = loader.getController();
-                    userController.setProfileData(customer);
+                    userController.setProfileData(customer);  // Передаем данные в UserController
 
                     // Показываем окно
                     stage.show();
+                    UserSession.setUser(new User(Integer.parseInt(login), false));
+
+                    // Закрываем текущее окно (если необходимо)
                     closeCurrentWindow();
                 } else {
-                    showErrorDialog();
+                    showErrorDialog();  // Показываем ошибку, если пользователь не найден
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -87,7 +91,7 @@ public class HelloController {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("Admin-view.fxml"));
                 Parent root = loader.load();
 
-                // Создаём новое окно (Stage)
+                // Создаем новое окно (Stage)
                 Stage stage = new Stage();
                 stage.setTitle("Admin");
 
@@ -96,14 +100,19 @@ public class HelloController {
 
                 // Показываем окно
                 stage.show();
+
+                UserSession.setUser(new User(Integer.parseInt(login), true));
+
+                // Закрываем текущее окно (если необходимо)
                 closeCurrentWindow();
             } catch (Exception e) {
                 e.printStackTrace();
             }
         } else {
-            showErrorDialog();
+            showErrorDialog();  // Показываем ошибку, если логин/пароль неверные
         }
     }
+
 
     // Метод для закрытия текущего окна
     private void closeCurrentWindow() {

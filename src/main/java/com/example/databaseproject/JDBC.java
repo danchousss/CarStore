@@ -16,4 +16,13 @@ public class JDBC {
     public static Connection getConnection() throws SQLException{
         return DriverManager.getConnection(url, username , password);
     }
+    public static void rollback(Connection connection) {
+        if (connection != null) {
+            try {
+                connection.rollback(); // Откат транзакции
+            } catch (SQLException e) {
+                System.out.println("Error while rolling back transaction: " + e.getMessage());
+            }
+        }
+    }
 }
